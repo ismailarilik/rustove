@@ -35,7 +35,7 @@ impl Component for Home<'_> {
     fn init(&mut self, _area: Size) -> Result<()> {
         self.textarea = TextArea::default();
         // Show line numbers
-        let style= Style::default().bg(Color::DarkGray);
+        let style = Style::default().bg(Color::DarkGray);
         self.textarea.set_line_number_style(style);
         Ok(())
     }
