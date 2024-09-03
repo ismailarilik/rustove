@@ -1,6 +1,6 @@
 [package]
 name = "rustove"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 description = "A text editor written in Rust/Ratatui"
 authors = ["ismailarilik <arilik.ismail@gmail.com>"]

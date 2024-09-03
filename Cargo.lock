@@ -1963,7 +1963,7 @@ dependencies = [
 
 [[package]]
 name = "rustove"
-version = "0.1.3"
+version = "0.1.4"
 dependencies = [
  "anyhow",
  "better-panic",

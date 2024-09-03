@@ -1,7 +1,7 @@
 use color_eyre::Result;
 use crossterm::event::KeyEvent;
 use ratatui::prelude::*;
-use ratatui::style::{Style, Color};
+use ratatui::style::{Color, Style};
 use tokio::sync::mpsc::UnboundedSender;
 use tui_textarea::TextArea;
 
