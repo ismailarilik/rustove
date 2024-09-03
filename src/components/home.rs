@@ -1,23 +1,26 @@
 use color_eyre::Result;
-use ratatui::{prelude::*, widgets::*};
+use crossterm::event::KeyEvent;
+use ratatui::prelude::*;
 use tokio::sync::mpsc::UnboundedSender;
+use tui_textarea::TextArea;
 
 use super::Component;
 use crate::{action::Action, config::Config};
 
 #[derive(Default)]
-pub struct Home {
+pub struct Home<'a> {
     command_tx: Option<UnboundedSender<Action>>,
     config: Config,
+    textarea: TextArea<'a>,
 }
 
-impl Home {
+impl Home<'_> {
     pub fn new() -> Self {
         Self::default()
     }
 }
 
-impl Component for Home {
+impl Component for Home<'_> {
     fn register_action_handler(&mut self, tx: UnboundedSender<Action>) -> Result<()> {
         self.command_tx = Some(tx);
         Ok(())
@@ -26,6 +29,16 @@ impl Component for Home {
     fn register_config_handler(&mut self, config: Config) -> Result<()> {
         self.config = config;
         Ok(())
+    }
+
+    fn init(&mut self, _area: Size) -> Result<()> {
+        self.textarea = TextArea::default();
+        Ok(())
+    }
+
+    fn handle_key_event(&mut self, key: KeyEvent) -> Result<Option<Action>> {
+        self.textarea.input(key);
+        Ok(None)
     }
 
     fn update(&mut self, action: Action) -> Result<Option<Action>> {
@@ -42,7 +55,7 @@ impl Component for Home {
     }
 
     fn draw(&mut self, frame: &mut Frame, area: Rect) -> Result<()> {
-        frame.render_widget(Paragraph::new("hello world"), area);
+        frame.render_widget(&self.textarea, area);
         Ok(())
     }
 }
