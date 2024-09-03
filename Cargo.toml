@@ -1,11 +1,12 @@
 [package]
 name = "rustove"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A text editor written in Rust/Ratatui"
 authors = ["ismailarilik <arilik.ismail@gmail.com>"]
 build = "build.rs"
 repository = "https://github.com/ismailarilik/rustove"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
